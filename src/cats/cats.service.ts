@@ -1,3 +1,4 @@
+import { AuthService } from './../auth/auth.service';
 import { CatsRepository } from './cats.repository';
 import { Cat } from './entities/cat.schema';
 import { CreateCatRequestDto } from './dto/request/create-cat.dto';
@@ -6,7 +7,10 @@ import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class CatsService {
-  constructor(private readonly catsRepository: CatsRepository) {}
+  constructor(
+    private readonly catsRepository: CatsRepository,
+    private readonly authService: AuthService,
+  ) {}
 
   async signUp(createRequest: CreateCatRequestDto) {
     const { email, name, password } = createRequest;
